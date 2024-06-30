@@ -1,0 +1,43 @@
+<!doctypehtml>
+<html lang=en-us>
+   <head>
+      <meta charset=utf-8>
+      <meta content="text/html; charset=utf-8"http-equiv=Content-Type>
+      <title>Emscripten-Generated Code</title>
+      <style>
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+      </style>
+   </head>
+   <body>
+      <canvas id=canvas width=1080 height=720 oncontextmenu=event.preventDefault() tabindex=-1></canvas>
+      <script>
+        var Module = {
+            print: (...t) => {
+                console.log(t.join(" "))
+            },
+            canvas: (() => {
+                var e = document.getElementById("canvas");
+                return e.addEventListener("webglcontextlost", (e => {
+                    alert("WebGL context lost. You will need to reload the page."), e.preventDefault()
+                }), !1), e
+            })(),
+            setStatus: e => {
+                console.log(e);
+            },
+            totalDependencies: 0,
+            monitorRunDependencies: e => {
+                this.totalDependencies = Math.max(this.totalDependencies, e), Module.setStatus(e ? "Preparing... (" + (this.totalDependencies - e) + "/" + this.totalDependencies + ")" : "All downloads complete.")
+            }
+        };
+        Module.setStatus("Downloading..."), window.onerror = e => {
+            Module.setStatus("Exception thrown, see JavaScript console"), Module.setStatus = e => {
+                e && console.error("[post-exception status] " + e)
+            }
+        }
+      </script>
+      <script async src=index.js></script>
+   </body>
+</html>

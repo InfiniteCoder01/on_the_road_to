@@ -1,0 +1,11 @@
+# ENV
+.direnv
+.envrc
+
+# ZIG
+/zig-cache
+/zig-out
+
+# WASM
+a.out.js
+a.out.wasm
